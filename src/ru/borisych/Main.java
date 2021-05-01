@@ -1,14 +1,10 @@
 package ru.borisych;
-
-import java.security.spec.ECField;
-import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Main {
     public static final String ERROR_INPUT_STRING = "Неверный фомат ввода";
     public static final String ERROR_OPERATION_NOT_FOUND = "Операция над числами не найдена";
     public static final String ERROR_WRONG_NUMBER = "Числа должны быть одного типа!";
-    public static final String ERROR_WRONG_NUMBER_ROME = "Оба числа должны быть римскими!";
     public static final String ERROR_WRONG_RANGE_OF_NUMBERS = "Числа должны быть от 1 до 10";
 
 
