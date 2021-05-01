@@ -1,5 +1,7 @@
 package ru.borisych;
 
+import static ru.borisych.Main.ERROR_WRONG_RANGE_NUMBER;
+
 public class RomeNum implements Num {
     String number;
     int numberToRome;
@@ -16,7 +18,14 @@ public class RomeNum implements Num {
     }
 
     public boolean isRome() {
-        int index = romeChar.indexOf(String.valueOf(number));
+        int index = -1;
+        try {
+            index = romeChar.indexOf(String.valueOf(number));
+            if (index == -1)
+                throw new Exception(ERROR_WRONG_RANGE_NUMBER);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return index != -1;
     }
 

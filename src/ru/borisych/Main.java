@@ -6,6 +6,7 @@ public class Main {
     public static final String ERROR_STRING_TOO_LONG = "Неверный фомат ввода";
     public static final String ERROR_OPERATION_NOT_FOUND = "Операция над числами не найдена";
     public static final String ERROR_WRONG_NUMBER = "Числа должны быть одного типа!";
+    public static final String ERROR_WRONG_RANGE_NUMBER = "Числа должны быть от 1 до 10";
 
 
     public static final String SPLIT_SEPARATOR = " ";
@@ -37,8 +38,9 @@ public class Main {
                 RomeNum romeResult = new RomeNum(result);
                 romeResult.toRome();
                 System.out.println(romeResult);
-            } else
+            } else{
                 throw new Exception(ERROR_WRONG_NUMBER);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -48,7 +50,6 @@ public class Main {
         Scanner inputString = new Scanner(System.in);
         String stringOfCalc = inputString.nextLine();
         String formattedStringOfCalc = stringOfCalc.replaceAll("\\s", "");
-        //Проверка на валидность выражения
         try {
             if (!(formattedStringOfCalc.length() <= MAX_LENGTH_STRING)) {
                 throw new Exception(ERROR_STRING_TOO_LONG);
@@ -66,10 +67,9 @@ public class Main {
             for (String operation : operations) {
                 if (string.contains(operation)) {
                     result = string.charAt(string.indexOf(operation));
-                } else if (result == '0') {
-                    throw new Exception(Main.ERROR_OPERATION_NOT_FOUND);
                 }
             }
+            if (result == '0') throw new Exception(Main.ERROR_OPERATION_NOT_FOUND);
         } catch (Exception e) {
             e.printStackTrace();
         }
