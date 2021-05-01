@@ -1,13 +1,13 @@
 package ru.borisych;
 
 public class RomeNum implements Num{
-    char number;
-    String validChar = "I II III IV V VI VII VIII IX X";
-    public RomeNum(char number){
+    String number;
+    String romeChar = Main.ROME_CHAR;
+    public RomeNum(String number){
         this.number = number;
     }
     public boolean isRome() {
-        int index = validChar.indexOf(String.valueOf(number));
+        int index = romeChar.indexOf(String.valueOf(number));
         return index != -1;
     }
     @Override
