@@ -17,12 +17,19 @@ public class Main {
         ArabicNum arabicNumTwo = new ArabicNum(numbers[1]);
         RomeNum romeNumOne = new RomeNum(numbers[0]);
         RomeNum romeNumTwo = new RomeNum(numbers[1]);
+        System.out.println(romeNumOne.getNum());
         int result = 0;
         try {
             if (arabicNumOne.isArabic() && arabicNumTwo.isArabic()) {
                 Calculator calculator = new Calculator(arabicNumOne, arabicNumTwo, operation);
                 result = calculator.getResult();
-            } else
+            } else if(romeNumOne.isRome() && romeNumTwo.isRome()){
+                Calculator calculator = new Calculator(romeNumOne, romeNumTwo, operation);
+                result = calculator.getResult();
+               /* RomeNum romeResult = new RomeNum(Integer.toString(result));
+                romeResult.toRome();
+                System.out.println(romeResult);*/
+            }else
                 throw new Exception("Ошибка при вводе чисел");
         } catch (Exception e) {
             e.printStackTrace();
