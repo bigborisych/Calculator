@@ -1,25 +1,26 @@
 package ru.borisych;
 
-import static ru.borisych.Main.ERROR_WRONG_RANGE_NUMBER;
-
 public class ArabicNum implements Num {
     String number;
-    String arabicChar = Main.ARABIC_CHAR;
 
     public ArabicNum(String number) {
         this.number = number;
     }
 
-    public boolean isArabic() {
-        int index = -1;
+    public boolean isNum() {
         try {
-            index = arabicChar.indexOf(String.valueOf(number));
-            if (index == -1)
-                throw new Exception(ERROR_WRONG_RANGE_NUMBER);
+            if (this.getNum() > 10) {
+                throw new Exception(Main.ERROR_WRONG_RANGE_OF_NUMBERS);
+            }
+        } catch (NumberFormatException e) {
+            System.err.println(Main.ERROR_WRONG_NUMBER);
+            e.printStackTrace();
+            return false;
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
-        return index != -1;
+        return true;
     }
 
     @Override

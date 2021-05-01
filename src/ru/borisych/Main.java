@@ -3,46 +3,43 @@ package ru.borisych;
 import java.util.Scanner;
 
 public class Main {
-    public static final String ERROR_STRING_TOO_LONG = "Неверный фомат ввода";
+    public static final String ERROR_INPUT_STRING = "Неверный фомат ввода";
     public static final String ERROR_OPERATION_NOT_FOUND = "Операция над числами не найдена";
     public static final String ERROR_WRONG_NUMBER = "Числа должны быть одного типа!";
-    public static final String ERROR_WRONG_RANGE_NUMBER = "Числа должны быть от 1 до 10";
+    public static final String ERROR_WRONG_NUMBER_ROME = "Оба числа должны быть римскими!";
+    public static final String ERROR_WRONG_RANGE_OF_NUMBERS = "Числа должны быть от 1 до 10";
 
 
     public static final String SPLIT_SEPARATOR = " ";
     public static final String OPERATIONS = "+ - * /";
-    public static final String ARABIC_CHAR = "1 2 3 5 6 7 8 9 10";
     public static final String ROME_CHAR = "I II III IV V VI VII VIII IX X";
     private static final byte MAX_LENGTH_STRING = 5;
+    private static final byte MIN_LENGTH_STRING = 2;
+
 
     public static void main(String[] args) {
-        // Инцициализация переменных
+
         String formattedStringOfCalc = getString();
         char operation = getOperation(formattedStringOfCalc);
+
         String formattedStringOfCalcDonutOperation = formattedStringOfCalc.replace(operation, ' ');
         String[] numbers = formattedStringOfCalcDonutOperation.split(SPLIT_SEPARATOR);
+
         ArabicNum arabicNumOne = new ArabicNum(numbers[0]);
         ArabicNum arabicNumTwo = new ArabicNum(numbers[1]);
         RomeNum romeNumOne = new RomeNum(numbers[0]);
         RomeNum romeNumTwo = new RomeNum(numbers[1]);
-
-        try {
-            int result;
-            if (arabicNumOne.isArabic() && arabicNumTwo.isArabic()) {
-                Calculator calculator = new Calculator(arabicNumOne, arabicNumTwo, operation);
-                result = calculator.getResult();
-                System.out.println(result);
-            } else if (romeNumOne.isRome() && romeNumTwo.isRome()) {
-                Calculator calculator = new Calculator(romeNumOne, romeNumTwo, operation);
-                result = calculator.getResult();
-                RomeNum romeResult = new RomeNum(result);
-                romeResult.toRome();
-                System.out.println(romeResult);
-            } else{
-                throw new Exception(ERROR_WRONG_NUMBER);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        int result;
+        if (arabicNumOne.isNum() && arabicNumTwo.isNum()) {
+            Calculator calculator = new Calculator(arabicNumOne, arabicNumTwo, operation);
+            result = calculator.getResult();
+            System.out.println(result);
+        } else if (romeNumOne.isNum() && romeNumTwo.isNum()) {
+            Calculator calculator = new Calculator(romeNumOne, romeNumTwo, operation);
+            result = calculator.getResult();
+            RomeNum romeResult = new RomeNum(String.valueOf(result));
+            romeResult.toRome();
+            System.out.println(romeResult);
         }
     }
 
@@ -51,8 +48,8 @@ public class Main {
         String stringOfCalc = inputString.nextLine();
         String formattedStringOfCalc = stringOfCalc.replaceAll("\\s", "");
         try {
-            if (!(formattedStringOfCalc.length() <= MAX_LENGTH_STRING)) {
-                throw new Exception(ERROR_STRING_TOO_LONG);
+            if (!((formattedStringOfCalc.length() <= MAX_LENGTH_STRING) && (formattedStringOfCalc.length() >= MIN_LENGTH_STRING))) {
+                throw new Exception(ERROR_INPUT_STRING);
             }
         } catch (Exception e) {
             e.printStackTrace();
