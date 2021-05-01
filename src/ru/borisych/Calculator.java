@@ -14,15 +14,19 @@ public class Calculator {
 
     public int getResult() {
         try {
-            switch (operation) {
-                case '+' -> result = numberOne.getNum() + numberTwo.getNum();
-                case '-' -> result = numberOne.getNum() - numberTwo.getNum();
-                case '*' -> result = numberOne.getNum() * numberTwo.getNum();
-                case '/' -> result = numberOne.getNum() / numberTwo.getNum();
-                default -> throw new Exception("Ошибка в операторе арифметической операции");
+            if(numberOne.getNum() > 10){
+                throw new Exception("Числа должны быть от 1 до 10");
+            }else if(numberTwo.getNum() > 10){
+                throw new Exception("Числа должны быть от 1 до 10");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch(Exception e){
+                e.printStackTrace();
+        }
+        switch (operation) {
+            case '+' -> result = numberOne.getNum() + numberTwo.getNum();
+            case '-' -> result = numberOne.getNum() - numberTwo.getNum();
+            case '*' -> result = numberOne.getNum() * numberTwo.getNum();
+            case '/' -> result = numberOne.getNum() / numberTwo.getNum();
         }
         return result;
     }

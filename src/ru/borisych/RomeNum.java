@@ -21,8 +21,8 @@ public class RomeNum implements Num {
     }
 
     public void toRome() {
-        String[] romeChars = ROME_OUTPUT_CHAR.split(" ");
-        String[] arabicChars = ARABIC_OUTPUT_CHAR.split(" ");
+        String[] romeChars = ROME_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
+        String[] arabicChars = ARABIC_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
         StringBuilder result = new StringBuilder();
         int i = arabicChars.length - 1;
         while (numberToRome > 0) {
@@ -39,7 +39,7 @@ public class RomeNum implements Num {
 
     @Override
     public int getNum() {
-        String[] romeChars = romeChar.split(" ");
+        String[] romeChars = romeChar.split(Main.SPLIT_SEPARATOR);
         for (int i = 0; i <= 9; i++) {
             if (number.equals(romeChars[i])) {
                 return i + 1;
