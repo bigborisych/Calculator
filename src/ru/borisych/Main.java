@@ -1,5 +1,7 @@
 package ru.borisych;
 
+import java.security.spec.ECField;
+import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Main {
@@ -13,6 +15,7 @@ public class Main {
     public static final String SPLIT_SEPARATOR = " ";
     public static final String OPERATIONS = "+ - * /";
     public static final String ROME_CHAR = "I II III IV V VI VII VIII IX X";
+    public static final String ARABIC_CHAR = "1 2 3 4 5 6 7 8 9 10";
     private static final byte MAX_LENGTH_STRING = 5;
     private static final byte MIN_LENGTH_STRING = 2;
 
@@ -30,17 +33,41 @@ public class Main {
         RomeNum romeNumOne = new RomeNum(numbers[0]);
         RomeNum romeNumTwo = new RomeNum(numbers[1]);
         int result;
-        if (arabicNumOne.isNum() && arabicNumTwo.isNum()) {
-            Calculator calculator = new Calculator(arabicNumOne, arabicNumTwo, operation);
-            result = calculator.getResult();
-            System.out.println(result);
-        } else if (romeNumOne.isNum() && romeNumTwo.isNum()) {
-            Calculator calculator = new Calculator(romeNumOne, romeNumTwo, operation);
-            result = calculator.getResult();
-            RomeNum romeResult = new RomeNum(String.valueOf(result));
-            romeResult.toRome();
-            System.out.println(romeResult);
+        try {
+
+            if (arabicNumOne.isNum() && arabicNumTwo.isNum()) {
+                Calculator calculator = new Calculator(arabicNumOne, arabicNumTwo, operation);
+                result = calculator.getResult();
+                System.out.println(result);
+
+            } else if (romeNumOne.isNum() && romeNumTwo.isNum()) {
+                Calculator calculator = new Calculator(romeNumOne, romeNumTwo, operation);
+                result = calculator.getResult();
+                RomeNum romeResult = new RomeNum(result);
+                romeResult.toRome();
+            } else if (romeNumOne.getNum() > 10 || romeNumTwo.getNum() > 10 || arabicNumOne.getNum() > 10 || arabicNumTwo.getNum() > 10) {
+                throw new Exception(ERROR_WRONG_RANGE_OF_NUMBERS);
+            }
+        } catch (NumberFormatException e){
+         System.err.println(ERROR_WRONG_NUMBER);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        /*
+        try {
+            if (romeNumOne.isNum() && romeNumTwo.isNum() || arabicNumOne.isNum() && arabicNumTwo.isNum()) {
+                Calculator calculator = new Calculator(romeNumOne, romeNumTwo, operation);
+                result = calculator.getResult();
+                if (romeNumOne.isNum()) {
+                    RomeNum romeResult = new RomeNum(result);
+                    romeResult.toRome();
+                } else
+                    System.out.println(result);
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
     }
 
     private static String getString() {

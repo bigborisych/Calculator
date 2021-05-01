@@ -10,21 +10,15 @@ public class RomeNum implements Num {
 
     public RomeNum(String number) {
         this.number = number;
-        this.numberToRome = getNum();
+    }
+
+    public RomeNum(int number) {
+
+        numberToRome = number;
     }
 
     public boolean isNum() {
-        try {
-            if (this.getNum() > 10) {
-                throw new Exception(Main.ERROR_WRONG_RANGE_OF_NUMBERS);
-            } else if (!romeChar.contains(number)) {
-                throw new Exception(Main.ERROR_WRONG_NUMBER_ROME);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-        return true;
+        return romeChar.contains(number);
     }
 
     public void toRome() {
@@ -41,17 +35,21 @@ public class RomeNum implements Num {
             }
 
         }
-        System.out.println(result.toString());
+
+        System.out.println(result);
     }
 
     @Override
     public int getNum() {
-        String[] romeChars = romeChar.split(Main.SPLIT_SEPARATOR);
-        for (int i = 0; i <= 9; i++) {
-            if (number.equals(romeChars[i])) {
-                return i + 1;
+        String[] romeChars = ROME_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
+        String[] arabicChars = ARABIC_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
+        StringBuilder result = new StringBuilder();
+        for (int i = arabicChars.length-1; i >= 0; i-- ) {
+            while (number.indexOf(romeChars[i]) == 0 && romeChars[i].length() > 0) {
+                result.append(arabicChars[i]);
+                number = number.substring(romeChars[i].length());
             }
         }
-        return 0;
+        return Integer.parseInt(result.toString());
     }
 }
