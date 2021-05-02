@@ -1,19 +1,33 @@
 package ru.borisych;
 
 public class ArabicNum implements Num {
-    String number;
-    String arabicChar = Main.ARABIC_CHAR;
+    private final String number;
+    private static final String NUM_TYPE = AbstractNum.ARABIC_TYPE;
 
     public ArabicNum(String number) {
         this.number = number;
     }
 
-    public boolean isNum() {
-        return arabicChar.contains(number);
+    @Override
+    public String getNumType() {
+        String[] arabicNumbers = Main.ARABIC_CHAR.split(Main.SPLIT_SEPARATOR);
+        for (String arabicNumber : arabicNumbers) {
+            if (number.contains(arabicNumber)) {
+                return NUM_TYPE;
+            }
+        }
+        return "0";
     }
 
     @Override
     public int getNum() {
-            return Integer.parseInt(number);
+        String[] arabicNumbers = Main.ARABIC_CHAR.split(Main.SPLIT_SEPARATOR);
+        for (String arabicNumber : arabicNumbers) {
+            if (number.contains(arabicNumber)) {
+                return Integer.parseInt(number);
+            }
+        }
+
+        return 0;
     }
 }

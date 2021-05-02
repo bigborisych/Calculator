@@ -12,13 +12,34 @@ public class Calculator {
         this.operation = operation;
     }
 
-    public int getResult() {
+    public String getResult() {
+        validateNumber(numberOne, numberTwo);
         switch (operation) {
             case '+' -> result = numberOne.getNum() + numberTwo.getNum();
             case '-' -> result = numberOne.getNum() - numberTwo.getNum();
             case '*' -> result = numberOne.getNum() * numberTwo.getNum();
             case '/' -> result = numberOne.getNum() / numberTwo.getNum();
         }
-        return result;
+        return String.valueOf(result);
+    }
+
+    private void validateNumber(Num numberOne, Num numberTwo) {
+        boolean validRange = numberOne.getNum() > 10 || numberOne.getNum() < 1 || numberTwo.getNum() > 10 || numberTwo.getNum() < 1;
+        try {
+            if (!(((numberOne.getNumType().equals("Arabic")) && (numberTwo.getNumType().equals("Arabic"))) || ((numberOne.getNumType().equals("Rome")) && (numberTwo.getNumType().equals("Rome"))))) {
+                throw new NumberFormatException();
+            } else if (validRange) {
+                throw new Exception(Main.ERROR_WRONG_RANGE_OF_NUMBERS);
+            }
+            System.out.println(numberOne.getNum());
+        } catch (NumberFormatException e) {
+            System.err.println(Main.ERROR_WRONG_NUMBER);
+            System.exit(1);
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println(Main.ERROR_WRONG_RANGE_OF_NUMBERS);
+            System.exit(1);
+            e.printStackTrace();
+        }
     }
 }
