@@ -31,7 +31,6 @@ public class Calculator {
             } else if (validRange) {
                 throw new Exception(Main.ERROR_WRONG_RANGE_OF_NUMBERS);
             }
-            System.out.println(numberOne.getNum());
         } catch (NumberFormatException e) {
             System.err.println(Main.ERROR_WRONG_NUMBER);
             System.exit(1);
