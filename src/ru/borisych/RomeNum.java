@@ -2,13 +2,16 @@ package ru.borisych;
 
 public class RomeNum implements Num {
     private final String number;
-    private static final String NUM_TYPE = "Rome";
+    private final int numberToRome;
+    private static final String NUM_TYPE = AbstractNum.ROME_TYPE;
     private static final String ROME_OUTPUT_CHAR = "I IV V IX X XL L XC C";
     private static final String ARABIC_OUTPUT_CHAR = "1 4 5 9 10 40 50 90 100";
 
     public RomeNum(String number) {
         this.number = number;
+        this.numberToRome = getNum();
     }
+
     public String getNumType() {
         String[] romeChars = Main.ROME_CHAR.split(Main.SPLIT_SEPARATOR);
         for (String romeChar : romeChars) {
@@ -19,35 +22,16 @@ public class RomeNum implements Num {
         return "0";
     }
 
-        /*
-        try {
-            if (romeChar.contains(number)) {
-                return true;
-            }else if(this.getNum() > 10 || this.getNum() < 1){
-                throw new Exception(Main.ERROR_WRONG_RANGE_OF_NUMBERS);
-            }else{
-                throw new NumberFormatException();
-            }
-        } catch (NumberFormatException e) {
-            System.err.println(Main.ERROR_WRONG_NUMBER);
-            System.exit(1);
-            return false;
-        } catch (Exception e) {
-            System.exit(1);
-            e.printStackTrace();
-            return false;
-        }*/
-
     public String toRome() {
-        int numberToRome = getNum();
+        int bufNumToRome = numberToRome;
         String[] romeChars = ROME_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
         String[] arabicChars = ARABIC_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
         StringBuilder result = new StringBuilder();
         int i = arabicChars.length - 1;
-        while (numberToRome > 0) {
-            if (numberToRome >= Integer.parseInt(arabicChars[i])) {
+        while (bufNumToRome > 0) {
+            if (bufNumToRome >= Integer.parseInt(arabicChars[i])) {
                 result.append(romeChars[i]);
-                numberToRome -= Integer.parseInt(arabicChars[i]);
+                bufNumToRome -= Integer.parseInt(arabicChars[i]);
             } else {
                 i--;
             }
@@ -59,16 +43,26 @@ public class RomeNum implements Num {
 
     @Override
     public int getNum() {
-        String buffString = number;
+        int result = 0;
+        if (getNumType().equals("0")) {
+            result = Integer.parseInt(number);
+        } else if (getNumType().equals(NUM_TYPE)) {
+            result = toArabic(number);
+        }
+        return result;
+    }
+
+    private int toArabic(String number) {
+        String bufNumToArabic = number;
         String[] romeChars = ROME_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
         String[] arabicChars = ARABIC_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
-        StringBuilder result = new StringBuilder();
-        for (int i = arabicChars.length-1; i >= 0; i-- ) {
-            while (buffString.indexOf(romeChars[i]) == 0 && romeChars[i].length() > 0) {
-                result.append(arabicChars[i]);
-                buffString = buffString.substring(romeChars[i].length());
+        int result = 0;
+        for (int i = arabicChars.length - 1; i >= 0; i--) {
+            while (bufNumToArabic.indexOf(romeChars[i]) == 0 && romeChars[i].length() > 0) {
+                result += Integer.parseInt(arabicChars[i]);
+                bufNumToArabic = bufNumToArabic.substring(romeChars[i].length());
             }
         }
-        return Integer.parseInt(result.toString());
+        return result;
     }
 }

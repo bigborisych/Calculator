@@ -2,7 +2,7 @@ package ru.borisych;
 
 public class ArabicNum implements Num {
     private final String number;
-    private static final String NUM_TYPE = "Arabic";
+    private static final String NUM_TYPE = AbstractNum.ARABIC_TYPE;
 
     public ArabicNum(String number) {
         this.number = number;
@@ -24,9 +24,10 @@ public class ArabicNum implements Num {
         String[] arabicNumbers = Main.ARABIC_CHAR.split(Main.SPLIT_SEPARATOR);
         for (String arabicNumber : arabicNumbers) {
             if (number.contains(arabicNumber)) {
-                return  Integer.parseInt(number);
+                return Integer.parseInt(number);
             }
         }
+
         return 0;
     }
 }

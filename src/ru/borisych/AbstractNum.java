@@ -3,7 +3,8 @@ package ru.borisych;
 public class AbstractNum implements Num {
     private final ArabicNum arabicNum;
     private final RomeNum romanNum;
-
+    public final static  String ROME_TYPE = "Rome";
+    public final static  String ARABIC_TYPE = "Arabic";
     private static final String NUM_TYPE = "Abstract";
 
     public AbstractNum(String number) {
@@ -13,33 +14,29 @@ public class AbstractNum implements Num {
 
     @Override
     public String getNumType() {
-        try {
-            if (romanNum.getNumType().equals("Roman")) {
-                return "Roman";
-            } else if (arabicNum.getNumType().equals("Arabic")) {
-                return "Arabic";
-            } else
-                throw new Exception("Неверные числа");
-        } catch (Exception e) {
-            System.exit(1);
-            e.printStackTrace();
+
+        if (romanNum.getNumType().equals(ROME_TYPE)) {
+            return ROME_TYPE;
+        } else if (arabicNum.getNumType().equals(ARABIC_TYPE)) {
+            return ARABIC_TYPE;
+        } else
             return NUM_TYPE;
-        }
+
     }
 
     @Override
     public int getNum() {
         try {
-            if (romanNum.getNumType().equals("Rome")) {
+            if (romanNum.getNumType().equals(ROME_TYPE)) {
                 return romanNum.getNum();
-            } else if (arabicNum.getNumType().equals("Arabic")) {
+            } else if (arabicNum.getNumType().equals(ARABIC_TYPE)) {
                 return arabicNum.getNum();
             } else
-                throw new Exception("Неверные числа");
+                throw new Exception();
         } catch (Exception e) {
-            System.err.println("Числа введены неверно");
-            System.exit(1);
+            System.err.println(Main.ERROR_INPUT_STRING);
             e.printStackTrace();
+            System.exit(1);
             return 0;
         }
     }
