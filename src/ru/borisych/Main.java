@@ -10,7 +10,7 @@ public class Main {
 
 
     public static final String SPLIT_SEPARATOR = " ";
-    public static final String ARABIC_CHAR = "1 2 3 4 5 6 7 8 9 10";
+    public static final String ARABIC_CHAR = "0 1 2 3 4 5 6 7 8 9";
     public static final String ROME_CHAR = "I II III IV V VI VII VIII IX X";
 
     private static final String OPERATIONS = "+ - * /";
@@ -27,10 +27,12 @@ public class Main {
         String[] numbers = formattedStringOfCalcDonutOperation.split(SPLIT_SEPARATOR);
         AbstractNum numberOne = new AbstractNum(numbers[0]);
         AbstractNum numberTwo = new AbstractNum(numbers[1]);
-        Calculator calculator = new Calculator(numberOne, numberTwo, operation);
+        System.out.println(numberOne.getNum());
+        System.out.println(numberTwo.getNum());
+        Calculator calculator = new Calculator(numberOne.getNum(), numberTwo.getNum(), operation);
         String result = calculator.getResult();
         System.out.println(result);
-        /* ArabicNum arabicNumOne = new ArabicNum(numbers[0]);
+        /* ArabicNum arabicNumOne = new ArabicNum(numbers[0]);1
         ArabicNum arabicNumTwo = new ArabicNum(numbers[1]);
         RomeNum romeNumOne = new RomeNum(numbers[0]);
         RomeNum romeNumTwo = new RomeNum(numbers[1]);

@@ -1,29 +1,22 @@
 package ru.borisych;
 
 public class RomeNum implements Num {
-    private String number;
-    private static int numberToRome;
-    private static String ROME_TYPE = "RomeType";
-    String romeChar = Main.ROME_CHAR;
+    private final String number;
+    private static final String NUM_TYPE = "Rome";
     private static final String ROME_OUTPUT_CHAR = "I IV V IX X XL L XC C";
     private static final String ARABIC_OUTPUT_CHAR = "1 4 5 9 10 40 50 90 100";
 
     public RomeNum(String number) {
         this.number = number;
     }
-
-    public RomeNum(int number) {
-        numberToRome = number;
-    }
-
     public String getNumType() {
-        String[] romeChars = romeChar.split(Main.SPLIT_SEPARATOR);
+        String[] romeChars = Main.ROME_CHAR.split(Main.SPLIT_SEPARATOR);
         for (String romeChar : romeChars) {
             if (number.contains(romeChar)) {
-                return ROME_TYPE;
+                return NUM_TYPE;
             }
         }
-        return "WrongType";
+        return "0";
     }
 
         /*
@@ -46,6 +39,7 @@ public class RomeNum implements Num {
         }*/
 
     public String toRome() {
+        int numberToRome = getNum();
         String[] romeChars = ROME_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
         String[] arabicChars = ARABIC_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
         StringBuilder result = new StringBuilder();
@@ -65,13 +59,14 @@ public class RomeNum implements Num {
 
     @Override
     public int getNum() {
+        String buffString = number;
         String[] romeChars = ROME_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
         String[] arabicChars = ARABIC_OUTPUT_CHAR.split(Main.SPLIT_SEPARATOR);
         StringBuilder result = new StringBuilder();
         for (int i = arabicChars.length-1; i >= 0; i-- ) {
-            while (number.indexOf(romeChars[i]) == 0 && romeChars[i].length() > 0) {
+            while (buffString.indexOf(romeChars[i]) == 0 && romeChars[i].length() > 0) {
                 result.append(arabicChars[i]);
-                number = number.substring(romeChars[i].length());
+                buffString = buffString.substring(romeChars[i].length());
             }
         }
         return Integer.parseInt(result.toString());

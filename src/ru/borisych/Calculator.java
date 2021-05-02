@@ -1,12 +1,12 @@
 package ru.borisych;
 
 public class Calculator {
-    private final Num numberOne;
-    private final Num numberTwo;
+    private final int numberOne;
+    private final int numberTwo;
     private int result;
     private final char operation;
 
-    public Calculator(Num numberOne, Num numberTwo, char operation) {
+    public Calculator(int numberOne, int numberTwo, char operation) {
         this.numberOne = numberOne;
         this.numberTwo = numberTwo;
         this.operation = operation;
@@ -14,12 +14,11 @@ public class Calculator {
 
     public String getResult() {
         switch (operation) {
-            case '+' -> result = numberOne.getNum() + numberTwo.getNum();
-            case '-' -> result = numberOne.getNum() - numberTwo.getNum();
-            case '*' -> result = numberOne.getNum() * numberTwo.getNum();
-            case '/' -> result = numberOne.getNum() / numberTwo.getNum();
+            case '+' -> result = numberOne + numberTwo;
+            case '-' -> result = numberOne - numberTwo;
+            case '*' -> result = numberOne * numberTwo;
+            case '/' -> result = numberOne / numberTwo;
         }
-
         return String.valueOf(result);
     }
     private String getNumbers(){
