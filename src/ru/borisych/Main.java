@@ -49,21 +49,6 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*
-        try {
-            if (romeNumOne.isNum() && romeNumTwo.isNum() || arabicNumOne.isNum() && arabicNumTwo.isNum()) {
-                Calculator calculator = new Calculator(romeNumOne, romeNumTwo, operation);
-                result = calculator.getResult();
-                if (romeNumOne.isNum()) {
-                    RomeNum romeResult = new RomeNum(result);
-                    romeResult.toRome();
-                } else
-                    System.out.println(result);
-
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
     }
 
     private static String getString() {
