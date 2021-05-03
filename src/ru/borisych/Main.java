@@ -18,21 +18,22 @@ public class Main {
 
 
     public static void main(String[] args) {
+        while (true) {
+            String formattedStringOfCalc = getString();
+            char operation = getOperation(formattedStringOfCalc);
 
-        String formattedStringOfCalc = getString();
-        char operation = getOperation(formattedStringOfCalc);
-
-        String formattedStringOfCalcDonutOperation = formattedStringOfCalc.replace(operation, ' ');
-        String[] numbers = formattedStringOfCalcDonutOperation.split(SPLIT_SEPARATOR);
-        AbstractNum numberOne = new AbstractNum(numbers[0]);
-        AbstractNum numberTwo = new AbstractNum(numbers[1]);
-        Calculator calculator = new Calculator(numberOne, numberTwo, operation);
-        String result = calculator.getResult();
-        if(numberOne.getNumType().equals("Rome")){
-            RomeNum resultToRome = new RomeNum(result);
-            result = resultToRome.toRome();
+            String formattedStringOfCalcDonutOperation = formattedStringOfCalc.replace(operation, ' ');
+            String[] numbers = formattedStringOfCalcDonutOperation.split(SPLIT_SEPARATOR);
+            AbstractNum numberOne = new AbstractNum(numbers[0]);
+            AbstractNum numberTwo = new AbstractNum(numbers[1]);
+            Calculator calculator = new Calculator(numberOne, numberTwo, operation);
+            String result = calculator.getResult();
+            if (numberOne.getNumType().equals("Rome")) {
+                RomeNum resultToRome = new RomeNum(result);
+                result = resultToRome.toRome();
+            }
+            System.out.println(result);
         }
-        System.out.println(result);
     }
 
     private static String getString() {
