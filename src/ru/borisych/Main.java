@@ -13,7 +13,7 @@ public class Main {
     public static final String ROME_CHAR = "I II III IV V VI VII VIII IX X";
 
     private static final String OPERATIONS = "+ - * /";
-    private static final byte MAX_LENGTH_STRING = 7;
+    private static final byte MAX_LENGTH_STRING = 10;
     private static final byte MIN_LENGTH_STRING = 3;
 
 
