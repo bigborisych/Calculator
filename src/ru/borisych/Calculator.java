@@ -20,7 +20,12 @@ public class Calculator {
             case '*' -> result = numberOne.getNum() * numberTwo.getNum();
             case '/' -> result = numberOne.getNum() / numberTwo.getNum();
         }
-        return String.valueOf(result);
+        if (result >= 0) {
+            return String.valueOf(result);
+        }else {
+            System.err.println("Калькулятор работает только с целыми числами");
+            throw new NumberFormatException();
+        }
     }
 
     private void validateNumber(Num numberOne, Num numberTwo) {
