@@ -1,6 +1,6 @@
 package ru.borisych;
 
-public class RomeNum implements Num {
+public class RomeNum implements Num{
     private final String number;
     private final int numberToRome;
     private static final String NUM_TYPE = AbstractNum.ROME_TYPE;
