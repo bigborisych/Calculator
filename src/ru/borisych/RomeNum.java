@@ -47,7 +47,11 @@ public class RomeNum implements Num {
         if (getNumType().equals("0")) {
             result = Integer.parseInt(number);
         } else if (getNumType().equals(NUM_TYPE)) {
-            result = toArabic(number);
+            for(String chars:Main.ROME_CHAR.split(Main.SPLIT_SEPARATOR)){
+                if(number.equals(chars)){
+                    return toArabic(chars);
+                }
+            }
         }
         return result;
     }
