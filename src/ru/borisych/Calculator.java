@@ -18,12 +18,15 @@ public class Calculator {
             case '+' -> result = numberOne.getNum() + numberTwo.getNum();
             case '-' -> result = numberOne.getNum() - numberTwo.getNum();
             case '*' -> result = numberOne.getNum() * numberTwo.getNum();
-            case '/' -> result = numberOne.getNum() / numberTwo.getNum();
+            case '/' -> {
+                if (((int) (numberOne.getNum() / numberTwo.getNum())) != (numberOne.getNum() / numberTwo.getNum())) {
+                    result = numberOne.getNum() / numberTwo.getNum();
+                }else throw new NumberFormatException("Калькулятор работает только с целыми числами");
+            }
         }
         if (result >= 0) {
             return String.valueOf(result);
-        }else {
-            System.err.println("Калькулятор работает только с целыми числами");
+        } else {
             throw new NumberFormatException();
         }
     }
