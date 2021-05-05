@@ -21,7 +21,7 @@ public class ArabicNumTest {
     }
     @Test
     public void operationTest(){
-        String operations = "+ *";
+        String operations = "+ * / -";
         String[] operationsSplit = operations.split(Main.SPLIT_SEPARATOR);
         for(String operation:operationsSplit){
             String testNumberStringT = "1 2 3 4 5 6 7 8 9 10";
@@ -47,7 +47,7 @@ public class ArabicNumTest {
                     Assert.assertEquals("Wrong number", "Rome", numberOne.getNumType());
                     Assert.assertEquals("Wrong number", "Rome", numberTwo.getNumType());
                     RomeNum resNum = new RomeNum(result);
-                    System.out.println(numberOne.getNum() + operation + numberTwo.getNum() + " = " + resNum.toRome());
+                    System.out.println(numberOne.toRome() + operation + numberTwo.toRome() + " = " + resNum.toRome());
                 }
             }
         }
