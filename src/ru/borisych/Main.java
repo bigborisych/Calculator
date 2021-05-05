@@ -28,7 +28,11 @@ public class Main {
             AbstractNum numberTwo = new AbstractNum(numbers[1]);
             Calculator calculator = new Calculator(numberOne, numberTwo, operation);
             String result = calculator.getResult();
-            if (numberOne.getNumType().equals("Rome")) {
+            if(result.contains("-") && numberOne.getNumType().equals("Rome")){
+                String[] formatedResult = result.split(String.valueOf(operation));
+                RomeNum resultToRome = new RomeNum(formatedResult[1]);
+                result = "-" + resultToRome.toRome();
+            }else{
                 RomeNum resultToRome = new RomeNum(result);
                 result = resultToRome.toRome();
             }

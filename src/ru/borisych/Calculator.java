@@ -18,17 +18,9 @@ public class Calculator {
             case '+' -> result = numberOne.getNum() + numberTwo.getNum();
             case '-' -> result = numberOne.getNum() - numberTwo.getNum();
             case '*' -> result = numberOne.getNum() * numberTwo.getNum();
-            case '/' -> {
-                if (((int) (numberOne.getNum() / numberTwo.getNum())) != (numberOne.getNum() / numberTwo.getNum())) {
-                    result = numberOne.getNum() / numberTwo.getNum();
-                }else throw new NumberFormatException("Калькулятор работает только с целыми числами");
-            }
+            case '/' -> result = Integer.parseInt(String.valueOf(numberOne.getNum() / numberTwo.getNum()));
         }
-        if (result >= 0) {
-            return String.valueOf(result);
-        } else {
-            throw new NumberFormatException();
-        }
+        return String.valueOf(result);
     }
 
     private void validateNumber(Num numberOne, Num numberTwo) {
