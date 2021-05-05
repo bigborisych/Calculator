@@ -32,7 +32,7 @@ public class Main {
                 String[] formatedResult = result.split(String.valueOf(operation));
                 RomeNum resultToRome = new RomeNum(formatedResult[1]);
                 result = "-" + resultToRome.toRome();
-            }else{
+            }else if(numberOne.getNumType().equals("Rome")){
                 RomeNum resultToRome = new RomeNum(result);
                 result = resultToRome.toRome();
             }
