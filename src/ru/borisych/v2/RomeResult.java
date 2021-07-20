@@ -18,7 +18,11 @@ public class RomeResult implements Result {
 
     @Override
     public void putResult(Integer result) {
-        this.result = toRome(result);
+        if (result < 0) {
+            this.result = "-" + toRome(Math.abs(result));
+        } else {
+            this.result = toRome(result);
+        }
     }
 
     private String toRome(Integer result) {
@@ -36,7 +40,6 @@ public class RomeResult implements Result {
             }
 
         }
-
         return romeStringResult.toString();
     }
 }
