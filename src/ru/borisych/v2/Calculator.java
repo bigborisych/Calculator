@@ -14,8 +14,6 @@ public class Calculator {
             String stringNumTwo = scanner.next();
             Num numOne = numFactory.getNum(stringNumOne);
             Num numTwo = numFactory.getNum(stringNumTwo);
-            System.out.println(numOne.getNum());
-            System.out.println(numTwo.getNum());
             Operation operation = operations.stream()
                     .filter(x -> x.getOperator().equals(inputOperation))
                     .findFirst()
