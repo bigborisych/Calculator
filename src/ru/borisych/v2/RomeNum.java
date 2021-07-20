@@ -21,7 +21,7 @@ public class RomeNum implements Num {
         return NUM_TYPE;
     }
 
-    private String toArabic(String number){
+    private String toArabic(String number) {
         String bufNumToArabic = number;
         String[] romeChars = ROME_CHAR.split(" ");
         String[] arabicChars = ARABIC_CHAR.split(" ");

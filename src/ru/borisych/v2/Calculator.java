@@ -16,11 +16,14 @@ public class Calculator {
             Num numTwo = numFactory.getNum(stringNumTwo);
             System.out.println(numOne.getNum());
             System.out.println(numTwo.getNum());
-            for (Operation operation : operations) {
-                if (operation.getOperator().equals(inputOperation)) {
-                    System.out.println(operation.processNums(numOne, numTwo).getResult());
-                }
+            Operation operation = operations.stream()
+                    .filter(x -> x.getOperator().equals(inputOperation))
+                    .findFirst()
+                    .orElse(null);
+            if (operation == null) {
+                throw new IllegalArgumentException();
             }
+            System.out.println(operation.processNums(numOne, numTwo).getResult());
         }
     }
 }

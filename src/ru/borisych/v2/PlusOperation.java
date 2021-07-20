@@ -1,7 +1,5 @@
 package ru.borisych.v2;
 
-import java.util.List;
-
 public class PlusOperation extends AbstractOperation {
     private final static String OPERATOR = "+";
 

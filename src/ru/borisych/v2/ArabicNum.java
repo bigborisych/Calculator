@@ -4,6 +4,7 @@ public class ArabicNum implements Num {
     private static final String NUM_TYPE = "ARABIC";
     private final String number;
     private final Validator validator = new ArabicNumValidator();
+
     public ArabicNum(String number) {
         this.number = number;
     }
